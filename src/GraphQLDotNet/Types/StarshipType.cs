@@ -1,16 +1,18 @@
-﻿using HotChocolate.Types;
-using Bench.Models;
+﻿using Bench.Models;
 using Bench.HotChocolate.Resolvers;
+using GraphQL.Types;
 
 namespace Bench.GraphQLDotNet.Types
 {
-    public class StarshipType : ObjectType<Starship>
+    public class StarshipType : ObjectGraphType<Starship>
     {
-        protected override void Configure(IObjectTypeDescriptor<Starship> descriptor)
+        public StarshipType()
         {
-            descriptor.Field(t => t.Id).Type<NonNullType<IdType>>();
-
-            descriptor.Field<SharedResolvers>(t => t.GetLength(default, default));
+            Field<NonNullGraphType<IdGraphType>>("id", resolve: context => context.Source.Id);
+            Field<IntGraphType>(
+                "lenght",
+                arguments: new QueryArguments() { new QueryArgument<UnitType>() { Name = "unit" } },
+                resolve: context => SharedResolvers.GetLength(context.GetArgument<Unit>("length"), context.Source));
         }
     }
 }

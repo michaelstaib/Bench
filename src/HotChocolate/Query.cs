@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using Bench.Data;
+﻿using Bench.Data;
 using Bench.Models;
 using HotChocolate.Resolvers;
-using Microsoft.Extensions.DependencyInjection;
+using System;
+using System.Collections.Generic;
 
 namespace Bench.HotChocolate
 {

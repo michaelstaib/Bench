@@ -27,7 +27,7 @@ namespace Bench.GraphQLDotNet.Types
         public static double GetLength(Unit? unit, [Parent]Starship starship)
             => ConvertToUnit(starship.Length, unit);
 
-        private double ConvertToUnit(double length, Unit? unit)
+        private static double ConvertToUnit(double length, Unit? unit)
         {
             if (unit == Unit.Foot)
             {

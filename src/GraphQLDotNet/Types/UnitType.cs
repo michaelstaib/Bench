@@ -1,9 +1,13 @@
-﻿using HotChocolate.Types;
-using Bench.Models;
+﻿using Bench.Models;
+using GraphQL.Types;
 
 namespace Bench.GraphQLDotNet.Types
 {
-    public class UnitType : EnumType<Unit>
+    public class UnitType : EnumerationGraphType<Unit>
     {
+        public UnitType()
+        {
+            Name = "Unit";
+        }
     }
 }
