@@ -32,16 +32,14 @@ namespace Bench.GraphQLDotNet
             return _repository.GetDroid(id);
         }
 
-        public IEnumerable<ICharacter> GetCharacter(string[] characterIds, IResolverContext context)
+        public IEnumerable<ICharacter> GetCharacter(string[] characterIds)
         {
             foreach (string characterId in characterIds)
             {
                 ICharacter character = _repository.GetCharacter(characterId);
                 if (character == null)
                 {
-                    context.ReportError(
-                        "Could not resolve a character for the " +
-                        $"character-id {characterId}.");
+                    throw new Exception("Not found");
                 }
                 else
                 {

@@ -1,23 +1,33 @@
-﻿using HotChocolate.Types;
-using Bench.Models;
+﻿using Bench.Models;
+using GraphQL.Types;
 
 namespace Bench.GraphQLDotNet.Types
 {
-    public class QueryType : ObjectType<Query>
+    public class QueryType : ObjectGraphType<Query>
     {
-        protected override void Configure(IObjectTypeDescriptor<Query> descriptor)
+        public QueryType()
         {
-            descriptor.Field(t => t.GetHero(default))
-                .Type<CharacterType>()
-                .Argument("episode", a => a.DefaultValue(Episode.NewHope));
-            descriptor.Field(t => t.GetCharacter(default, default))
-                .Type<NonNullType<ListType<NonNullType<CharacterType>>>>()
-                .Argument("characterIds", a => a.Type<NonNullType<ListType<NonNullType<IdType>>>>());
-            descriptor.Field(t => t.GetHuman(default))
-                .Argument("id", a => a.Type<NonNullType<IdType>>());
-            descriptor.Field(t => t.GetDroid(default))
-                .Argument("id", a => a.Type<NonNullType<IdType>>());
+            Name = "Query";
+
+            Field<CharacterType>()
+                .Name("hero")
+                .Argument<EpisodeType>("episode", "")
+                .Resolve(context => context.Source.GetHero(context.GetArgument<Episode>("episode")));
+
+            Field<CharacterType>()
+                .Name("character")
+                .Argument<NonNullGraphType<ListGraphType<NonNullGraphType<IdGraphType>>>>("characterIds", "")
+                .Resolve(context => context.Source.GetCharacter(context.GetArgument<string[]>("characterIds")));
+
+            Field<HumanType>()
+                .Name("human")
+                .Argument<NonNullGraphType<IdGraphType>>("id", "")
+                .Resolve(context => context.Source.GetHuman(context.GetArgument<string>("id")));
+
+            Field<DroidType>()
+                .Name("human")
+                .Argument<NonNullGraphType<IdGraphType>>("id", "")
+                .Resolve(context => context.Source.GetDroid(context.GetArgument<string>("id")));
         }
     }
-
 }

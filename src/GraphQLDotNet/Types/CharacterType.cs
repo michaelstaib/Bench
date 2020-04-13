@@ -11,7 +11,7 @@ namespace Bench.GraphQLDotNet.Types
             Field<StringGraphType>("name");
             Field<ListGraphType<CharacterType>>("friends");
             Field<ListGraphType<EpisodeType>>("appearsIn");
-            Field<FloatGraphType>("height", 
+            Field<FloatGraphType>("height", arguments:
                 new QueryArguments(
                     new QueryArgument<UnitType> { Name = "unit" }));
         }

@@ -21,10 +21,10 @@ namespace Bench.GraphQLDotNet.Types
             }
         }
 
-        public double GetHeight(Unit? unit, [Parent]ICharacter character)
+        public static double GetHeight(Unit? unit, [Parent]ICharacter character)
             => ConvertToUnit(character.Height, unit);
 
-        public double GetLength(Unit? unit, [Parent]Starship starship)
+        public static double GetLength(Unit? unit, [Parent]Starship starship)
             => ConvertToUnit(starship.Length, unit);
 
         private double ConvertToUnit(double length, Unit? unit)
