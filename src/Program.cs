@@ -1,4 +1,4 @@
-﻿using System;
+﻿using BenchmarkDotNet.Running;
 
 namespace Bench
 {
@@ -6,9 +6,7 @@ namespace Bench
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            BenchmarkRunner.Run<ExecutorBenchmarks>();
         }
     }
-
-    
 }

@@ -10,6 +10,8 @@ namespace Bench.HotChocolate
         {
             return SchemaBuilder.New()
                 .AddQueryType<QueryType>()
+                .AddType<DroidType>()
+                .AddType<HumanType>()
                 .Create()
                 .MakeExecutable();
         }
