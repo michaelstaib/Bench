@@ -29,268 +29,88 @@ namespace Bench
         }
 
         [Benchmark]
-        public async Task<IExecutionResult> HotChocolate_SmallQuery()
+        public async Task<IExecutionResult> HotChocolate_Three_Fields()
         {
             var request = QueryRequestBuilder.New()
-                .SetQuery(@"
-                {
-                    hero(episode: EMPIRE) {
-                        id
-                        name
-                    }
-                }
-                ")
+                .SetQuery(Queries.ThreeFields)
                 .SetServices(_services)
                 .Create();
 
             return await _queryExecutor.ExecuteAsync(request);
+        }
+
+        [Benchmark]
+        public async Task<ExecutionResult> GQLDotNet_Three_Fields()
+        {
+            return await _gqlDotNetExecutor.ExecuteAsync("", Queries.ThreeFields, null, null);
         }
 
         [Benchmark]
         public async Task<IExecutionResult> HotChocolate_SmallQuery_With_Fragments()
         {
             var request = QueryRequestBuilder.New()
-                .SetQuery(@"
-                {
-                    hero(episode: EMPIRE) {
-                        id
-                        name
-                        appearsIn
-                        friends {
-                            id
-                            name
-                            appearsIn
-                            height
-                            ... on Droid {
-                                primaryFunction
-                            }
-                            ... on Human {
-                                homePlanet
-                            }
-                        }
-                    }
-                }
-                ")
+                .SetQuery(Queries.SmallQuery)
                 .SetServices(_services)
                 .Create();
 
             return await _queryExecutor.ExecuteAsync(request);
-        }
-
-        [Benchmark]
-        public async Task<IExecutionResult> HotChocolate_SmallQuery_Introspection()
-        {
-            var request = QueryRequestBuilder.New()
-                .SetQuery(@"
-                  query IntrospectionQuery {
-    __schema {
-      queryType { name }
-      mutationType { name }
-      subscriptionType { name }
-      types {
-        ...FullType
-      }
-      directives {
-        name
-        description
-        args {
-          ...InputValue
-        }
-        onOperation
-        onFragment
-        onField
-      }
-    }
-  }
-
-  fragment FullType on __Type {
-    kind
-    name
-    description
-    fields(includeDeprecated: true) {
-      name
-      description
-      args {
-        ...InputValue
-      }
-      type {
-        ...TypeRef
-      }
-      isDeprecated
-      deprecationReason
-    }
-    inputFields {
-      ...InputValue
-    }
-    interfaces {
-      ...TypeRef
-    }
-    enumValues(includeDeprecated: true) {
-      name
-      description
-      isDeprecated
-      deprecationReason
-    }
-    possibleTypes {
-      ...TypeRef
-    }
-  }
-
-  fragment InputValue on __InputValue {
-    name
-    description
-    type { ...TypeRef }
-    defaultValue
-  }
-
-  fragment TypeRef on __Type {
-    kind
-    name
-    ofType {
-      kind
-      name
-      ofType {
-        kind
-        name
-        ofType {
-          kind
-          name
-        }
-      }
-    }
-  }
-
-                ")
-                .SetServices(_services)
-                .Create();
-
-            return await _queryExecutor.ExecuteAsync(request);
-        }
-
-        [Benchmark]
-        public async Task<ExecutionResult> GQLDotNet_SmallQuery()
-        {
-            return await _gqlDotNetExecutor.ExecuteAsync("",
-                @"
-                {
-                    hero(episode: EMPIRE) {
-                        id
-                        name
-                    }
-                }
-                ", null, null);
         }
 
         [Benchmark]
         public async Task<ExecutionResult> GQLDotNet_SmallQuery_With_Fragments()
         {
-            return await _gqlDotNetExecutor.ExecuteAsync("",
-                @"
-                {
-                    hero(episode: EMPIRE) {
-                        id
-                        name
-                        appearsIn
-                        friends {
-                            id
-                            name
-                            appearsIn
-                            height
-                            ... on Droid {
-                                primaryFunction
-                            }
-                            ... on Human {
-                                homePlanet
-                            }
-                        }
-                    }
-                }
-                ", null, null);
+            return await _gqlDotNetExecutor.ExecuteAsync("", Queries.SmallQuery, null, null);
         }
 
         [Benchmark]
-        public async Task<ExecutionResult> GQLDotNet_SmallQuery_Introspection()
+        public async Task<IExecutionResult> HotChocolate_MediumQuery_With_Fragments()
         {
-            return await _gqlDotNetExecutor.ExecuteAsync("",
-                @"
-                query IntrospectionQuery {
-    __schema {
-      queryType { name }
-      mutationType { name }
-      subscriptionType { name }
-      types {
-        ...FullType
-      }
-      directives {
-        name
-        description
-        args {
-          ...InputValue
+            var request = QueryRequestBuilder.New()
+                .SetQuery(Queries.MediumQuery)
+                .SetServices(_services)
+                .Create();
+
+            return await _queryExecutor.ExecuteAsync(request);
         }
-        onOperation
-        onFragment
-        onField
-      }
-    }
-  }
 
-  fragment FullType on __Type {
-    kind
-    name
-    description
-    fields(includeDeprecated: true) {
-      name
-      description
-      args {
-        ...InputValue
-      }
-      type {
-        ...TypeRef
-      }
-      isDeprecated
-      deprecationReason
-    }
-    inputFields {
-      ...InputValue
-    }
-    interfaces {
-      ...TypeRef
-    }
-    enumValues(includeDeprecated: true) {
-      name
-      description
-      isDeprecated
-      deprecationReason
-    }
-    possibleTypes {
-      ...TypeRef
-    }
-  }
-
-  fragment InputValue on __InputValue {
-    name
-    description
-    type { ...TypeRef }
-    defaultValue
-  }
-
-  fragment TypeRef on __Type {
-    kind
-    name
-    ofType {
-      kind
-      name
-      ofType {
-        kind
-        name
-        ofType {
-          kind
-          name
+        [Benchmark]
+        public async Task<ExecutionResult> GQLDotNet_MediumQuery_With_Fragments()
+        {
+            return await _gqlDotNetExecutor.ExecuteAsync("", Queries.MediumQuery, null, null);
         }
-      }
-    }
-  }
-                ", null, null);
+
+        [Benchmark]
+        public async Task<IExecutionResult> HotChocolate_IntrospectionQuery()
+        {
+            var request = QueryRequestBuilder.New()
+                .SetQuery(Queries.Introspection)
+                .SetServices(_services)
+                .Create();
+
+            return await _queryExecutor.ExecuteAsync(request);
+        }
+
+        [Benchmark]
+        public async Task<ExecutionResult> GQLDotNet_Introspection()
+        {
+            return await _gqlDotNetExecutor.ExecuteAsync("", Queries.Introspection, null, null);
+        }
+
+        [Benchmark]
+        public async Task<IExecutionResult> HotChocolate_Medium_Query_Plus_Introspection()
+        {
+            var request = QueryRequestBuilder.New()
+                .SetQuery(Queries.MediumPlusIntrospection)
+                .SetServices(_services)
+                .Create();
+
+            return await _queryExecutor.ExecuteAsync(request);
+        }
+
+        [Benchmark]
+        public async Task<ExecutionResult> GQLDotNet_Medium_Query_Plus_Introspection()
+        {
+            return await _gqlDotNetExecutor.ExecuteAsync("", Queries.MediumPlusIntrospection, null, null);
         }
     }
 }
