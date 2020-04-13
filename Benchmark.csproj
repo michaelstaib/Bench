@@ -6,9 +6,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="GraphQL.Server.Core" Version="3.5.0-alpha0046" />
     <PackageReference Include="HotChocolate.AspNetCore" Version="10.4.1" />
     <PackageReference Include="GraphQL" Version="3.0.0-preview-1490" />
+    <PackageReference Include="GraphQL.Server.Core" Version="3.5.0-alpha0046" />
+    <PackageReference Include="GraphQL-Parser" Version="5.1.0" />
     <PackageReference Include="BenchmarkDotNet" Version="0.12.1" />
   </ItemGroup>
 
