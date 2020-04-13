@@ -51,7 +51,7 @@ namespace Bench
         {
             var result = await _gqlDotNetExecutor.ExecuteAsync("", Queries.ThreeFields, null, null);
 
-            if (result.Errors.Count > 0)
+            if (result.Errors is { })
             {
                 throw new Exception("Result has errors!");
             }
@@ -82,7 +82,7 @@ namespace Bench
         {
             var result = await _gqlDotNetExecutor.ExecuteAsync("", Queries.SmallQuery, null, null);
 
-            if (result.Errors.Count > 0)
+            if (result.Errors is { })
             {
                 throw new Exception("Result has errors!");
             }
@@ -113,7 +113,7 @@ namespace Bench
         {
             var result = await _gqlDotNetExecutor.ExecuteAsync("", Queries.MediumQuery, null, null);
 
-            if (result.Errors.Count > 0)
+            if (result.Errors is { })
             {
                 throw new Exception("Result has errors!");
             }
@@ -144,7 +144,7 @@ namespace Bench
         {
             var result = await _gqlDotNetExecutor.ExecuteAsync("", Queries.Introspection, null, null);
 
-            if (result.Errors.Count > 0)
+            if (result.Errors is { })
             {
                 throw new Exception("Result has errors!");
             }
@@ -175,7 +175,7 @@ namespace Bench
         {
             var result = await _gqlDotNetExecutor.ExecuteAsync("", Queries.MediumPlusIntrospection, null, null);
 
-            if (result.Errors.Count > 0)
+            if (result.Errors is { })
             {
                 throw new Exception("Result has errors!");
             }

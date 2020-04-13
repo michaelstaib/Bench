@@ -7,7 +7,10 @@ namespace Bench
     {
         static void Main(string[] args)
         {
-            BenchmarkRunner.Run<ExecutorBenchmarks>();
+            var x = new ExecutorBenchmarks();
+            var y = x.GQLDotNet_SmallQuery_With_Fragments().Result;
+
+            // BenchmarkRunner.Run<ExecutorBenchmarks>();
         }
     }
 }
