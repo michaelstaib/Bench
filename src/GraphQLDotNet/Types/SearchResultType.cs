@@ -1,16 +1,15 @@
-﻿using HotChocolate.Types;
-using Bench.Models;
+﻿using Bench.Models;
+using GraphQL.Types;
 
 namespace Bench.GraphQLDotNet.Types
 {
-    public class SearchResultType : UnionType
+    public class SearchResultType : UnionGraphType
     {
-        protected override void Configure(IUnionTypeDescriptor descriptor)
+        public SearchResultType()
         {
-            descriptor.Name("SearchResult");
-            descriptor.Type<ObjectType<Starship>>();
-            descriptor.Type<HumanType>();
-            descriptor.Type<DroidType>();
+            Type<StarshipType>();
+            Type<HumanType>();
+            Type<DroidType>();
         }
     }
 }

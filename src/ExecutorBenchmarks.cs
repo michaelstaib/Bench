@@ -1,9 +1,13 @@
-using System;
-using System.Threading.Tasks;
-using Microsoft.Extensions.DependencyInjection;
 using Bench.Data;
+using Benchmark.src.GraphQLDotNet;
 using BenchmarkDotNet.Attributes;
+using GraphQL;
+using GraphQL.Server.Internal;
 using HotChocolate.Execution;
+using Microsoft.Extensions.DependencyInjection;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Bench
 {
@@ -12,6 +16,7 @@ namespace Bench
     {
         private readonly IServiceProvider _services;
         private readonly IQueryExecutor _queryExecutor;
+        private readonly IGraphQLExecuter<BenchSchema> _gqlDotNetExecutor;
 
         public ExecutorBenchmarks()
         {
@@ -21,7 +26,7 @@ namespace Bench
                 .BuildServiceProvider();
 
             _queryExecutor = HotChocolate.Setup.Create();
-
+            _gqlDotNetExecutor = GraphQLDotNet.Setup.Create();
         }
 
         [Benchmark]
@@ -40,6 +45,21 @@ namespace Bench
                 .Create();
 
             return await _queryExecutor.ExecuteAsync(request);
+        }
+
+        [Benchmark]
+        public async Task<ExecutionResult> GQLDotNet_SmallQuery()
+        {
+            return await _gqlDotNetExecutor.ExecuteAsync("",
+                @"
+                {
+                    hero(episode: EMPIRE) {
+                        id
+                        name
+                    }
+                }
+                ", new GraphQL.Inputs(), new Dictionary<string, object>());
+
         }
     }
 }
