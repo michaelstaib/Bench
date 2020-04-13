@@ -1,5 +1,6 @@
 ﻿using BenchmarkDotNet.Running;
 
+
 namespace Bench
 {
     class Program

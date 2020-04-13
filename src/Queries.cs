@@ -33,7 +33,7 @@ namespace Bench
 
         public const string MediumQuery = @"
             {
-                newhope: hero(episode: NEWHOPE) {
+                newhope: hero(episode: NEW_HOPE) {
                     id
                     name
                     appearsIn
@@ -88,7 +88,7 @@ namespace Bench
 
         public const string MediumPlusIntrospection = @"
             {
-                newhope: hero(episode: NEWHOPE) {
+                newhope: hero(episode: NEW_HOPE) {
                     id
                     name
                     appearsIn
@@ -157,48 +157,52 @@ namespace Bench
                         onField
                     }
                 }
+            }
 
-                fragment FullType on __Type {
-                    kind
+            fragment FullType on __Type {
+                kind
+                name
+                description
+                fields(includeDeprecated: true) {
                     name
                     description
-                    fields(includeDeprecated: true) {
-                        name
-                        description
-                        args {
-                            ...InputValue
-                        }
-                        type {
-                            ...TypeRef
-                        }
-                        isDeprecated
-                        deprecationReason
+                    args {
+                        ...InputValue
                     }
-                    inputFields {
-                    ...InputValue
-                    }
-                    interfaces {
+                    type {
                         ...TypeRef
                     }
-                    enumValues(includeDeprecated: true) {
-                        name
-                        description
-                        isDeprecated
-                        deprecationReason
-                    }
-                    possibleTypes {
-                        ...TypeRef
-                    }
+                    isDeprecated
+                    deprecationReason
                 }
-
-                fragment InputValue on __InputValue {
+                inputFields {
+                ...InputValue
+                }
+                interfaces {
+                    ...TypeRef
+                }
+                enumValues(includeDeprecated: true) {
                     name
                     description
-                    type { ...TypeRef }
-                    defaultValue
+                    isDeprecated
+                    deprecationReason
                 }
+                possibleTypes {
+                    ...TypeRef
+                }
+            }
 
-                fragment TypeRef on __Type {
+            fragment InputValue on __InputValue {
+                name
+                description
+                type { ...TypeRef }
+                defaultValue
+            }
+
+            fragment TypeRef on __Type {
+                kind
+                name
+                ofType {
                     kind
                     name
                     ofType {
@@ -207,10 +211,6 @@ namespace Bench
                         ofType {
                             kind
                             name
-                            ofType {
-                                kind
-                                name
-                            }
                         }
                     }
                 }

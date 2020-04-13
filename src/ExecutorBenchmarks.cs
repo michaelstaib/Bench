@@ -36,13 +36,27 @@ namespace Bench
                 .SetServices(_services)
                 .Create();
 
-            return await _queryExecutor.ExecuteAsync(request);
+            var result = await _queryExecutor.ExecuteAsync(request);
+
+            if (result.Errors.Count > 0)
+            {
+                throw new Exception("Result has errors!");
+            }
+
+            return result;
         }
 
         [Benchmark]
         public async Task<ExecutionResult> GQLDotNet_Three_Fields()
         {
-            return await _gqlDotNetExecutor.ExecuteAsync("", Queries.ThreeFields, null, null);
+            var result = await _gqlDotNetExecutor.ExecuteAsync("", Queries.ThreeFields, null, null);
+
+            if (result.Errors.Count > 0)
+            {
+                throw new Exception("Result has errors!");
+            }
+
+            return result;
         }
 
         [Benchmark]
@@ -53,13 +67,27 @@ namespace Bench
                 .SetServices(_services)
                 .Create();
 
-            return await _queryExecutor.ExecuteAsync(request);
+            var result = await _queryExecutor.ExecuteAsync(request);
+
+            if (result.Errors.Count > 0)
+            {
+                throw new Exception("Result has errors!");
+            }
+
+            return result;
         }
 
         [Benchmark]
         public async Task<ExecutionResult> GQLDotNet_SmallQuery_With_Fragments()
         {
-            return await _gqlDotNetExecutor.ExecuteAsync("", Queries.SmallQuery, null, null);
+            var result = await _gqlDotNetExecutor.ExecuteAsync("", Queries.SmallQuery, null, null);
+
+            if (result.Errors.Count > 0)
+            {
+                throw new Exception("Result has errors!");
+            }
+
+            return result;
         }
 
         [Benchmark]
@@ -70,13 +98,27 @@ namespace Bench
                 .SetServices(_services)
                 .Create();
 
-            return await _queryExecutor.ExecuteAsync(request);
+            var result = await _queryExecutor.ExecuteAsync(request);
+
+            if (result.Errors.Count > 0)
+            {
+                throw new Exception("Result has errors!");
+            }
+
+            return result;
         }
 
         [Benchmark]
         public async Task<ExecutionResult> GQLDotNet_MediumQuery_With_Fragments()
         {
-            return await _gqlDotNetExecutor.ExecuteAsync("", Queries.MediumQuery, null, null);
+            var result = await _gqlDotNetExecutor.ExecuteAsync("", Queries.MediumQuery, null, null);
+
+            if (result.Errors.Count > 0)
+            {
+                throw new Exception("Result has errors!");
+            }
+
+            return result;
         }
 
         [Benchmark]
@@ -87,13 +129,27 @@ namespace Bench
                 .SetServices(_services)
                 .Create();
 
-            return await _queryExecutor.ExecuteAsync(request);
+            var result = await _queryExecutor.ExecuteAsync(request);
+
+            if (result.Errors.Count > 0)
+            {
+                throw new Exception("Result has errors!");
+            }
+
+            return result;
         }
 
         [Benchmark]
         public async Task<ExecutionResult> GQLDotNet_Introspection()
         {
-            return await _gqlDotNetExecutor.ExecuteAsync("", Queries.Introspection, null, null);
+            var result = await _gqlDotNetExecutor.ExecuteAsync("", Queries.Introspection, null, null);
+
+            if (result.Errors.Count > 0)
+            {
+                throw new Exception("Result has errors!");
+            }
+
+            return result;
         }
 
         [Benchmark]
@@ -104,13 +160,27 @@ namespace Bench
                 .SetServices(_services)
                 .Create();
 
-            return await _queryExecutor.ExecuteAsync(request);
+            var result = await _queryExecutor.ExecuteAsync(request);
+
+            if (result.Errors.Count > 0)
+            {
+                throw new Exception("Result has errors!");
+            }
+
+            return result;
         }
 
         [Benchmark]
         public async Task<ExecutionResult> GQLDotNet_Medium_Query_Plus_Introspection()
         {
-            return await _gqlDotNetExecutor.ExecuteAsync("", Queries.MediumPlusIntrospection, null, null);
+            var result = await _gqlDotNetExecutor.ExecuteAsync("", Queries.MediumPlusIntrospection, null, null);
+
+            if (result.Errors.Count > 0)
+            {
+                throw new Exception("Result has errors!");
+            }
+
+            return result;
         }
     }
 }

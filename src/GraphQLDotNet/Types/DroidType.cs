@@ -25,7 +25,7 @@ namespace Bench.GraphQLDotNet.Types
             Field<ListGraphType<EpisodeType>>(
                 "appearsIn", 
                 resolve: ctx => ctx.Source.AppearsIn);
-            Field(t => t.PrimaryFunction);
+            Field(t => t.PrimaryFunction, nullable: true);
             Field<FloatGraphType>(
                 "height",
                 arguments: new QueryArguments(

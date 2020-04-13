@@ -23,7 +23,7 @@ namespace Bench.GraphQLDotNet.Types
             Field<ListGraphType<EpisodeType>>(
                 "appearsIn", 
                 resolve: ctx => ctx.Source.AppearsIn);
-            Field(t => t.HomePlanet);
+            Field(t => t.HomePlanet, nullable: true);
             Field<FloatGraphType>(
                 "height",
                 arguments: new QueryArguments(
