@@ -50,7 +50,7 @@ namespace Bench
         [Benchmark]
         public async Task<ExecutionResult> GQLDotNet_SmallQuery()
         {
-            var x = await _gqlDotNetExecutor.ExecuteAsync("",
+            return await _gqlDotNetExecutor.ExecuteAsync("",
                 @"
                 {
                     hero(episode: EMPIRE) {
@@ -59,9 +59,6 @@ namespace Bench
                     }
                 }
                 ", null, null);
-
-            return x;
-
         }
     }
 }

@@ -1,8 +1,12 @@
+using System;
 using Bench.Data;
 using Bench.GraphQLDotNet.Types;
 using Benchmark.src.GraphQLDotNet;
+using GraphQL;
 using GraphQL.Server;
 using GraphQL.Server.Internal;
+using GraphQL.Types;
+using HotChocolate.Language;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Bench.GraphQLDotNet
@@ -14,6 +18,7 @@ namespace Bench.GraphQLDotNet
             var serviceProvider = new ServiceCollection()
                 .AddSingleton<CharacterRepository>()
                 .AddSingleton<ReviewRepository>()
+                .AddSingleton<IDocumentExecuter, DocumentExecuter>()
                 .AddSingleton<BenchSchema>()
                 .AddSingleton<QueryType>()
                 .AddSingleton<CharacterType>()
@@ -24,10 +29,9 @@ namespace Bench.GraphQLDotNet
                 .AddSingleton<DroidType>()
                 .AddSingleton<HumanType>()
                 .AddSingleton<ReviewType>()
-                .AddSingleton<UnitType>();
-            serviceProvider.AddGraphQL();
+                .AddSingleton<UnitType>()
+                .AddGraphQL().Services;
 
-            var o = serviceProvider.BuildServiceProvider().GetRequiredService<HumanType>();
             return serviceProvider.BuildServiceProvider().GetService<IGraphQLExecuter<BenchSchema>>();
         }
     }

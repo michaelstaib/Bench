@@ -8,6 +8,7 @@ namespace Benchmark.src.GraphQLDotNet
     public class BenchSchema : Schema
     {
         public BenchSchema(IServiceProvider provider)
+            : base(provider)
         {
             Query = provider.GetService<QueryType>();
         }
