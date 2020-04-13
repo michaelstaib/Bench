@@ -1,5 +1,4 @@
-﻿using Bench.Models;
-using GraphQL.Types;
+﻿using GraphQL.Types;
 
 namespace Bench.GraphQLDotNet.Types
 {

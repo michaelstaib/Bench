@@ -11,21 +11,24 @@ namespace Bench.GraphQLDotNet
     {
         public static IGraphQLExecuter<BenchSchema> Create()
         {
-            var serivceProvider = new ServiceCollection()
+            var serviceProvider = new ServiceCollection()
                 .AddSingleton<CharacterRepository>()
                 .AddSingleton<ReviewRepository>()
+                .AddSingleton<BenchSchema>()
+                .AddSingleton<QueryType>()
                 .AddSingleton<CharacterType>()
-                .AddSingleton<DroidType>()
                 .AddSingleton<EpisodeType>()
-                .AddSingleton<HumanType>()
                 .AddSingleton<ReviewInputType>()
-                .AddSingleton<ReviewType>()
                 .AddSingleton<SearchResultType>()
                 .AddSingleton<StarshipType>()
-                .AddSingleton<UnitType>()
-                .AddSingleton<BenchSchema>();
-            serivceProvider.AddGraphQL();
-            return serivceProvider.BuildServiceProvider().GetService<IGraphQLExecuter<BenchSchema>>();
+                .AddSingleton<DroidType>()
+                .AddSingleton<HumanType>()
+                .AddSingleton<ReviewType>()
+                .AddSingleton<UnitType>();
+            serviceProvider.AddGraphQL();
+
+            var o = serviceProvider.BuildServiceProvider().GetRequiredService<HumanType>();
+            return serviceProvider.BuildServiceProvider().GetService<IGraphQLExecuter<BenchSchema>>();
         }
     }
 }

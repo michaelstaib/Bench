@@ -1,5 +1,6 @@
 ﻿using Bench.Data;
 using Bench.Models;
+using GraphQL;
 using GraphQL.Types;
 using System;
 using System.Collections.Generic;

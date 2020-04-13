@@ -1,6 +1,7 @@
 ﻿using Bench.Models;
 using Bench.HotChocolate.Resolvers;
 using GraphQL.Types;
+using GraphQL;
 
 namespace Bench.GraphQLDotNet.Types
 {
