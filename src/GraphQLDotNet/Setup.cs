@@ -2,7 +2,7 @@ using Bench.HotChocolate.Types;
 using HotChocolate;
 using HotChocolate.Execution;
 
-namespace Bench.HotChocolate
+namespace Bench.GraphQLDotNet
 {
     public static class Setup
     {

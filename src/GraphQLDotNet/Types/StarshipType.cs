@@ -2,7 +2,7 @@
 using Bench.Models;
 using Bench.HotChocolate.Resolvers;
 
-namespace Bench.HotChocolate.Types
+namespace Bench.GraphQLDotNet.Types
 {
     public class StarshipType : ObjectType<Starship>
     {

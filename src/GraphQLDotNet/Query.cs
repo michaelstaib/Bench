@@ -5,7 +5,7 @@ using Bench.Models;
 using HotChocolate.Resolvers;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Bench.HotChocolate
+namespace Bench.GraphQLDotNet
 {
     public class Query
     {

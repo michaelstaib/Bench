@@ -1,7 +1,7 @@
 ﻿using HotChocolate.Types;
 using Bench.Models;
 
-namespace Bench.HotChocolate.Types
+namespace Bench.GraphQLDotNet.Types
 {
     public class SearchResultType : UnionType
     {

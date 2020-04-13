@@ -1,9 +1,13 @@
-﻿using HotChocolate.Types;
-using Bench.Models;
+﻿using Bench.Models;
+using GraphQL.Types;
 
-namespace Bench.HotChocolate.Types
+namespace Bench.GraphQLDotNet.Types
 {
-    public class EpisodeType : EnumType<Episode>
+    public class EpisodeType : EnumerationGraphType<Episode>
     {
+        public EpisodeType()
+        {
+            Name = "Episode";
+        }
     }
 }

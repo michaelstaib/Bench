@@ -1,11 +1,26 @@
-﻿using Bench.HotChocolate.Resolvers;
+﻿using System.Collections.Generic;
+using Bench.Data;
+using Bench.HotChocolate.Resolvers;
 using Bench.Models;
-using HotChocolate.Types;
+using GraphQL.Types;
 
-namespace Bench.HotChocolate.Types
+namespace Bench.GraphQLDotNet.Types
 {
-    public class HumanType : ObjectType<Human>
+    public class HumanType : ObjectGraphType<Human>
     {
+        public HumanType(CharacterRepository repository)
+        {
+            Name = "Human";
+            
+            Interface<CharacterType>();
+
+            Field(t => t.Id).Type(new NonNullGraphType<IdGraphType>());
+            Field(t => t.Name, nullable: true);
+            Field<ListGraphType<CharacterType>, IEnumerable<ICharacter>>(
+                "friends", : context => SharedResolvers.GetCharacter(context.Source, repository));
+            Field(t => t.Id).Type(new NonNullGraphType<IdGraphType>());
+        }
+
         protected override void Configure(IObjectTypeDescriptor<Human> descriptor)
         {
             descriptor.Interface<CharacterType>();

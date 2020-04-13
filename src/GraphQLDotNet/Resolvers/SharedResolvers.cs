@@ -8,8 +8,8 @@ namespace Bench.GraphQLDotNet.Types
     public static class SharedResolvers
     {
         public static IEnumerable<ICharacter> GetCharacter(
-            [Parent]ICharacter character,
-            [Service]CharacterRepository repository)
+            ICharacter character,
+            CharacterRepository repository)
         {
             foreach (string friendId in character.Friends)
             {
