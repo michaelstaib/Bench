@@ -7,7 +7,8 @@ namespace Bench
     {
         static void Main(string[] args)
         {
-            new ExecutorBenchmarks().GQLDotNet_Introspection().Wait();
+            // new ExecutorBenchmarks().HotChocolate_Small_Query_With_Async().Wait();
+            new ExecutorBenchmarks().GQLDotNet_Small_Query_With_Async().Wait();
 
             BenchmarkRunner.Run<ExecutorBenchmarks>();
         }

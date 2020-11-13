@@ -30,11 +30,11 @@ namespace Bench.GraphQLDotNet.Types
                     new QueryArgument<UnitType> { Name = "unit" }),
                 resolve: context => SharedResolvers.GetHeight(context.GetArgument<Unit?>("unit"), context.Source));
 
-            FieldAsync<FloatGraphType>(
+            FieldAsync<StringGraphType>(
                 "nameHash",
                 resolve: async context => await SharedResolvers.GetNameHashAsync(context.Source));
 
-            FieldAsync<FloatGraphType>(
+            FieldAsync<StringGraphType>(
                 "nameDelayed",
                 resolve: async context => await SharedResolvers.GetNameDelayedAsync(context.Source));
         }
