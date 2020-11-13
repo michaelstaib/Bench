@@ -52,7 +52,7 @@ namespace Bench.HotChocolate.Resolvers
 
         public async Task<string> GetNameDelayedAsync([Parent] Human human)
         {
-            await Task.Delay(50);
+            await Task.Delay(1);
             return human.Name;
         }
     }
