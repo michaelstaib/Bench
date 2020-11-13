@@ -1,19 +1,23 @@
+using Bench.Data;
 using Bench.HotChocolate.Types;
-using HotChocolate;
 using HotChocolate.Execution;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Bench.HotChocolate
 {
     public static class Setup
     {
-        public static IQueryExecutor Create()
+        public static IRequestExecutor Create()
         {
-            return SchemaBuilder.New()
+            return new ServiceCollection()
+                .AddSingleton<CharacterRepository>()
+                .AddSingleton<ReviewRepository>()
+                .AddGraphQLServer()
                 .AddQueryType<QueryType>()
                 .AddType<DroidType>()
                 .AddType<HumanType>()
-                .Create()
-                .MakeExecutable();
+                .BuildRequestExecutorAsync()
+                .Result;
         }
     }
 }

@@ -18,7 +18,6 @@ namespace Bench.GraphQLDotNet
             var serviceProvider = new ServiceCollection()
                 .AddSingleton<CharacterRepository>()
                 .AddSingleton<ReviewRepository>()
-                .AddSingleton<IDocumentExecuter, DocumentExecuter>()
                 .AddSingleton<BenchSchema>()
                 .AddSingleton<QueryType>()
                 .AddSingleton<CharacterType>()
@@ -30,7 +29,11 @@ namespace Bench.GraphQLDotNet
                 .AddSingleton<HumanType>()
                 .AddSingleton<ReviewType>()
                 .AddSingleton<UnitType>()
-                .AddGraphQL().Services;
+                .AddOptions()
+                .AddGraphQL()
+                .AddSystemTextJson()
+                .AddGraphTypes(typeof(BenchSchema))
+                .Services;
 
             return serviceProvider.BuildServiceProvider().GetService<IGraphQLExecuter<BenchSchema>>();
         }

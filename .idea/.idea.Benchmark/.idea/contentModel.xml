@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="$PROJECT_DIR$/../.nuget/packages/microsoft.diagnostics.tracing.traceevent/2.0.49/lib/native/amd64" t="Include">
+      <e p="KernelTraceControl.dll" t="Include" />
+      <e p="msdia140.dll" t="Include" />
+    </e>
+    <e p="$PROJECT_DIR$/../.nuget/packages/microsoft.diagnostics.tracing.traceevent/2.0.49/lib/native/x86" t="Include">
+      <e p="KernelTraceControl.dll" t="Include" />
+      <e p="KernelTraceControl.Win61.dll" t="Include" />
+      <e p="msdia140.dll" t="Include" />
+    </e>
+    <e p="$PROJECT_DIR$/../.nuget/packages/microsoft.diagnostics.tracing.traceevent/2.0.49/lib/netstandard1.6/Dia2Lib.dll" t="Include" />
+    <e p="$PROJECT_DIR$/../.nuget/packages/microsoft.diagnostics.tracing.traceevent/2.0.49/lib/netstandard1.6/OSExtensions.dll" t="Include" />
+    <e p="$PROJECT_DIR$/../.nuget/packages/microsoft.diagnostics.tracing.traceevent/2.0.49/lib/netstandard1.6/TraceReloggerLib.dll" t="Include" />
+    <e p="$PROJECT_DIR$" t="IncludeRecursive">
+      <e p=".gitignore" t="Include" />
+      <e p="Benchmark.csproj" t="IncludeRecursive" />
+      <e p="Benchmark.sln" t="IncludeFlat" />
+      <e p="bin" t="ExcludeRecursive" />
+      <e p="clean.sh" t="Include" />
+      <e p="LICENSE" t="Include" />
+      <e p="obj" t="ExcludeRecursive">
+        <e p="Debug" t="Include">
+          <e p="netcoreapp3.1" t="Include">
+            <e p="Benchmark.AssemblyInfo.cs" t="Include" />
+          </e>
+        </e>
+      </e>
+      <e p="packages" t="ExcludeRecursive" />
+      <e p="run.sh" t="Include" />
+      <e p="src" t="Include">
+        <e p="ExecutorBenchmarks.cs" t="Include" />
+        <e p="GraphQLDotNet" t="Include">
+          <e p="BenchSchema.cs" t="Include" />
+          <e p="Resolvers" t="Include">
+            <e p="SharedResolvers.cs" t="Include" />
+          </e>
+          <e p="Setup.cs" t="Include" />
+          <e p="Types" t="Include">
+            <e p="CharacterType.cs" t="Include" />
+            <e p="DroidType.cs" t="Include" />
+            <e p="EpisodeType.cs" t="Include" />
+            <e p="HumanType.cs" t="Include" />
+            <e p="QueryType.cs" t="Include" />
+            <e p="ReviewInputType.cs" t="Include" />
+            <e p="ReviewType.cs" t="Include" />
+            <e p="SearchResultType.cs" t="Include" />
+            <e p="StarshipType.cs" t="Include" />
+            <e p="UnitType.cs" t="Include" />
+          </e>
+        </e>
+        <e p="HotChocolate" t="Include">
+          <e p="Query.cs" t="Include" />
+          <e p="Resolvers" t="Include">
+            <e p="SharedResolvers.cs" t="Include" />
+          </e>
+          <e p="Setup.cs" t="Include" />
+          <e p="Types" t="Include">
+            <e p="CharacterType.cs" t="Include" />
+            <e p="DroidType.cs" t="Include" />
+            <e p="EpisodeType.cs" t="Include" />
+            <e p="HumanType.cs" t="Include" />
+            <e p="QueryType.cs" t="Include" />
+            <e p="ReviewInputType.cs" t="Include" />
+            <e p="ReviewType.cs" t="Include" />
+            <e p="SearchResultType.cs" t="Include" />
+            <e p="StarshipType.cs" t="Include" />
+            <e p="UnitType.cs" t="Include" />
+          </e>
+        </e>
+        <e p="Program.cs" t="Include" />
+        <e p="Queries.cs" t="Include" />
+        <e p="Shared" t="Include">
+          <e p="Data" t="Include">
+            <e p="CharacterRepository.cs" t="Include" />
+            <e p="ReviewRepository.cs" t="Include" />
+          </e>
+          <e p="Models" t="Include">
+            <e p="Droid.cs" t="Include" />
+            <e p="Episode.cs" t="Include" />
+            <e p="Human.cs" t="Include" />
+            <e p="ICharacter.cs" t="Include" />
+            <e p="Review.cs" t="Include" />
+            <e p="Starship.cs" t="Include" />
+            <e p="Unit.cs" t="Include" />
+          </e>
+        </e>
+      </e>
+    </e>
+    <e p="$PROJECT_DIR$/../Library/Caches/JetBrains/Rider2020.3/extResources" t="IncludeRecursive" />
+    <e p="$PROJECT_DIR$/../Library/Caches/JetBrains/Rider2020.3/resharper-host/local/Transient/Rider/v203/SolutionCaches/_Benchmark.-934094662.00" t="ExcludeRecursive" />
+  </component>
+</project>
