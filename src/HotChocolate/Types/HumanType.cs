@@ -1,4 +1,5 @@
-﻿using Bench.HotChocolate.Resolvers;
+﻿using System.Threading.Tasks;
+using Bench.HotChocolate.Resolvers;
 using Bench.Models;
 using HotChocolate.Types;
 
@@ -16,7 +17,7 @@ namespace Bench.HotChocolate.Types
             descriptor.Field(t => t.AppearsIn)
                 .Type<ListType<EpisodeType>>();
 
-            descriptor.Field<SharedResolvers>(r => r.GetCharacter(default, default))
+            descriptor.Field<SharedResolvers>(t => t.GetCharacter(default, default))
                 .Type<ListType<CharacterType>>()
                 .Name("friends");
 
@@ -24,6 +25,12 @@ namespace Bench.HotChocolate.Types
                 .Type<FloatType>()
                 .Argument("unit", a => a.Type<UnitType>())
                 .Name("height");
+
+            descriptor.Field<SharedResolvers>(t => t.GetNameHashAsync(default))
+                .Name("nameHash");
+
+            descriptor.Field<SharedResolvers>(t => t.GetNameDelayedAsync(default))
+                .Name("nameDelayed");
         }
     }
 }
