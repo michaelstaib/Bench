@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace StarWars.Data.Tools.Dtos
+namespace HotChocolate.StarWars.Data.Tools.Dtos
 {
     public class GetStarshipResponse : IResponse<StarshipDto>
     {

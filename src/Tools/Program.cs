@@ -10,7 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using StarWars;
 using StarWars.Data.Tools.Dtos;
 
-namespace StarWars.Data.Tools
+namespace HotChocolate.StarWars.Data.Tools
 {
     class Program
     {
@@ -42,6 +42,7 @@ namespace StarWars.Data.Tools
         private readonly Dictionary<string, (Planet, PlanetDto)> _planets = new();
         private readonly Dictionary<string, (Species, SpeciesDto)> _species = new();
         private readonly Dictionary<string, (Vehicle, VehicleDto)> _vehicles = new();
+        private readonly Dictionary<string, (Starship, StarshipDto)> _starships = new();
         private readonly Dictionary<string, Producer> _producers = new();
         private readonly Dictionary<string, Director> _directors = new();
         private readonly Dictionary<string, Climate> _climates = new();
@@ -51,7 +52,6 @@ namespace StarWars.Data.Tools
         private readonly Dictionary<string, SkinColor> _skinColor = new();
         private readonly Dictionary<string, Manufacturer> _manufacturers = new();
 
-
         public async Task SeedAsync(StarWarsContext context)
         {
             await LoadFilmsAsync();
@@ -59,6 +59,7 @@ namespace StarWars.Data.Tools
             await LoadPlanetsAsync();
             await LoadSpeciesAsync();
             await LoadVehiclesAsync();
+            await LoadStarshipsAsync();
 
             foreach (var film in _films.Select(t => t.Value.Item1))
             {
@@ -83,6 +84,11 @@ namespace StarWars.Data.Tools
             foreach (var vehicle in _vehicles.Select(t => t.Value.Item1))
             {
                 context.Vehicles.Add(vehicle);
+            }
+
+            foreach (var starship in _starships.Select(t => t.Value.Item1))
+            {
+                context.Starships.Add(starship);
             }
         }
 
@@ -360,6 +366,82 @@ namespace StarWars.Data.Tools
                 }
 
                 _vehicles.Add(dto.url, (vehicle, dto));
+            }
+        }
+
+         private async Task LoadStarshipsAsync()
+        {
+            const string url = "https://swapi.dev/api/starships";
+
+            await foreach (var dto in FetchAsync<GetStarshipResponse, StarshipDto>(url))
+            {
+                var starship = new Starship
+                {
+                    Name = dto.name,
+                    Created = dto.created,
+                    Edited = dto.edited,
+                    CargoCapacity = null,
+                    Consumables = dto.consumables,
+                    CostInCredits = null,
+                    Crew = dto.crew,
+                    Length = null,
+                    MaxAtmospheringSpeed = null,
+                    Passengers = dto.passengers,
+                    Model = dto.model,
+                    StarshipClass = dto.starship_class,
+                    HyperdriveRating = null,
+                    MGLT = null
+                };
+
+                if (dto.cargo_capacity is not null and not "unknown")
+                {
+                    starship.CargoCapacity = 
+                        dto.cargo_capacity == "none" 
+                            ? 0 
+                            : double.Parse(dto.cargo_capacity);
+                }
+
+                if (dto.cost_in_credits is not null and not "unknown")
+                {
+                    starship.CostInCredits = double.Parse(dto.cost_in_credits);
+                }
+
+                if (dto.length is not null and not "unknown")
+                {
+                    starship.Length = double.Parse(dto.length);
+                }
+
+                if (dto.max_atmosphering_speed is not null and not "unknown" and not "n/a")
+                {
+                    starship.MaxAtmospheringSpeed = int.Parse(dto.max_atmosphering_speed.Trim('m', 'k'));
+                }
+
+                if (dto.hyperdrive_rating is not null and not "unknown")
+                {
+                    starship.HyperdriveRating = double.Parse(dto.hyperdrive_rating);
+                }
+
+                if (dto.MGLT is not null and not "unknown")
+                {
+                    starship.MGLT = int.Parse(dto.MGLT);
+                }
+
+                foreach (var name in dto.manufacturer.Split(',').Select(t => t.Trim()).Distinct())
+                {
+                    starship.Manufacturers.Add(GetOrAddManufacturer(name));
+                }
+
+                foreach (var id in dto.films)
+                {
+                    starship.Films.Add(_films[id].Item1);
+                }
+
+                foreach (var id in dto.pilots)
+                {
+                    starship.Pilots.Add(_people[id].Item1);
+                }
+
+                _starships.Add(dto.url, (starship, dto));
             }
         }
 
