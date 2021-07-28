@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using Benchmark.src.GraphQLDotNet;
 using BenchmarkDotNet.Attributes;
 using GraphQL;
-using GraphQL.Server.Internal;
+using GraphQL.Server;
 using HotChocolate.Execution;
 
 namespace Bench
@@ -40,7 +40,7 @@ namespace Bench
             return result;
         }
 
-        [Benchmark]
+        // [Benchmark]
         public async Task<ExecutionResult> GQLDotNet_Three_Fields()
         {
             var result = await _gqlDotNetExecutor.ExecuteAsync("", Queries.ThreeFields, null, null, default);
@@ -73,7 +73,7 @@ namespace Bench
             return result;
         }
 
-        [Benchmark]
+        // [Benchmark]
         public async Task<ExecutionResult> GQLDotNet_Small_Query_With_Async()
         {
             var result = await _gqlDotNetExecutor.ExecuteAsync("", Queries.SmallQueryWithAsync, null, null, default);
@@ -105,7 +105,7 @@ namespace Bench
             return result;
         }
 
-        [Benchmark]
+        // [Benchmark]
         public async Task<ExecutionResult> GQLDotNet_SmallQuery_With_Fragments()
         {
             var result = await _gqlDotNetExecutor.ExecuteAsync("", Queries.SmallQuery, null, null, default);
@@ -137,7 +137,7 @@ namespace Bench
             return result;
         }
 
-        [Benchmark]
+        // [Benchmark]
         public async Task<ExecutionResult> GQLDotNet_MediumQuery_With_Fragments()
         {
             var result = await _gqlDotNetExecutor.ExecuteAsync("", Queries.MediumQuery, null, null, default);
@@ -150,7 +150,7 @@ namespace Bench
             return result;
         }
 
-         [Benchmark]
+        [Benchmark]
         public async Task<IExecutionResult> HotChocolate_MediumQuery_With_Fragments_With_Async()
         {
             var request = new QueryRequest(new QuerySourceText(Queries.MediumQueryAsync));
@@ -169,7 +169,7 @@ namespace Bench
             return result;
         }
 
-        [Benchmark]
+        // [Benchmark]
         public async Task<ExecutionResult> GQLDotNet_MediumQuery_With_Fragments_With_Async()
         {
             var result = await _gqlDotNetExecutor.ExecuteAsync("", Queries.MediumQueryAsync, null, null, default);
@@ -201,7 +201,7 @@ namespace Bench
             return result;
         }
 
-        [Benchmark]
+        // [Benchmark]
         public async Task<ExecutionResult> GQLDotNet_Introspection()
         {
             var result = await _gqlDotNetExecutor.ExecuteAsync("", Queries.Introspection, null, null, default);
@@ -233,7 +233,7 @@ namespace Bench
             return result;
         }
 
-        [Benchmark]
+        // [Benchmark]
         public async Task<ExecutionResult> GQLDotNet_Medium_Query_Plus_Introspection()
         {
             var result = await _gqlDotNetExecutor.ExecuteAsync("", Queries.MediumPlusIntrospection, null, null, default);
@@ -265,7 +265,7 @@ namespace Bench
             return result;
         }
 
-        [Benchmark]
+        // [Benchmark]
         public async Task<ExecutionResult> GQLDotNet_Medium_Query_Plus_Introspection_With_Async()
         {
             var result = await _gqlDotNetExecutor.ExecuteAsync("", Queries.MediumPlusIntrospectionWithAsync, null, null, default);

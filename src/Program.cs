@@ -1,13 +1,15 @@
-﻿using BenchmarkDotNet.Running;
+﻿using System.Threading.Tasks;
+using BenchmarkDotNet.Running;
 
 
 namespace Bench
 {
     class Program
     {
-        static void Main(string[] args)
+        async static Task Main(string[] args)
         {
-            BenchmarkRunner.Run<ExecutorBenchmarks>();
+            await new ExecutorBenchmarks().HotChocolate_Medium_Query_Plus_Introspection_With_Async();
         }
+        // => BenchmarkRunner.Run<ExecutorBenchmarks>();
     }
 }

@@ -33,7 +33,7 @@ namespace Bench.GraphQLDotNet.Types
                 .Resolve(context => _repository.GetHuman(context.GetArgument<string>("id")));
 
             Field<DroidType>()
-                .Name("human")
+                .Name("droid")
                 .Argument<NonNullGraphType<IdGraphType>>("id", "")
                 .Resolve(context => _repository.GetDroid(context.GetArgument<string>("id")));
         }

@@ -1,12 +1,7 @@
-using System;
 using Bench.Data;
 using Bench.GraphQLDotNet.Types;
 using Benchmark.src.GraphQLDotNet;
-using GraphQL;
 using GraphQL.Server;
-using GraphQL.Server.Internal;
-using GraphQL.Types;
-using HotChocolate.Language;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Bench.GraphQLDotNet

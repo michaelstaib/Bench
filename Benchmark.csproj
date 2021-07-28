@@ -7,9 +7,11 @@
 
   <ItemGroup>
     <PackageReference Include="GraphQL.Server.Transports.AspNetCore.SystemTextJson" Version="4.3.0" />
-    <PackageReference Include="HotChocolate.AspNetCore" Version="11.0.0-rc.2" />
-    <PackageReference Include="GraphQL.Server.Core" Version="4.3.0" />
-    <PackageReference Include="BenchmarkDotNet" Version="0.12.1" />
+    <!--PackageReference Include="HotChocolate.AspNetCore" Version="12.0.0-preview.27" /-->
+    <ProjectReference Include="/Users/michael/local/hc-2/src/HotChocolate/AspNetCore/src/AspNetCore/HotChocolate.AspNetCore.csproj" />
+    <PackageReference Include="GraphQL.Server.Core" Version="5.0.2" />
+    <!--PackageReference Include="GraphQL" Version="4.5.0" /-->
+    <PackageReference Include="BenchmarkDotNet" Version="0.13.0" />
     <PackageReference Include="Snapshooter" Version="0.5.2" />
   </ItemGroup>
 

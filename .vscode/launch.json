@@ -9,7 +9,7 @@
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",
-            "program": "${workspaceFolder}/bin/Debug/netcoreapp3.1/Benchmark.dll",
+            "program": "${workspaceFolder}/bin/Debug/net5.0/Benchmark.dll",
             "args": [],
             "cwd": "${workspaceFolder}",
             "console": "internalConsole",
@@ -18,8 +18,7 @@
         {
             "name": ".NET Core Attach",
             "type": "coreclr",
-            "request": "attach",
-            "processId": "${command:pickProcess}"
+            "request": "attach"
         }
     ]
 }
