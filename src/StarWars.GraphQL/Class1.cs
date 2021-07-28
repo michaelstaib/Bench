@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace StarWars.GraphQL
+namespace HotChocolate.StarWars
 {
     public class Class1
     {
