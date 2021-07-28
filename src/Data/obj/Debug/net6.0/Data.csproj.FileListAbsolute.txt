@@ -1,0 +1,14 @@
+/Users/michael/local/Bench/src/Data/obj/Debug/net6.0/Data.csproj.AssemblyReference.cache
+/Users/michael/local/Bench/src/Data/obj/Debug/net6.0/Data.GeneratedMSBuildEditorConfig.editorconfig
+/Users/michael/local/Bench/src/Data/obj/Debug/net6.0/Data.AssemblyInfoInputs.cache
+/Users/michael/local/Bench/src/Data/obj/Debug/net6.0/Data.AssemblyInfo.cs
+/Users/michael/local/Bench/src/Data/obj/Debug/net6.0/Data.csproj.CoreCompileInputs.cache
+/Users/michael/local/Bench/src/Data/bin/Debug/net6.0/Data.deps.json
+/Users/michael/local/Bench/src/Data/bin/Debug/net6.0/Data.dll
+/Users/michael/local/Bench/src/Data/bin/Debug/net6.0/ref/Data.dll
+/Users/michael/local/Bench/src/Data/bin/Debug/net6.0/Data.pdb
+/Users/michael/local/Bench/src/Data/obj/Debug/net6.0/Data.dll
+/Users/michael/local/Bench/src/Data/obj/Debug/net6.0/ref/Data.dll
+/Users/michael/local/Bench/src/Data/obj/Debug/net6.0/Data.pdb
+/Users/michael/local/Bench/src/Data/bin/Debug/net6.0/Data.runtimeconfig.json
+/Users/michael/local/Bench/src/Data/obj/Debug/net6.0/Data.genruntimeconfig.cache
