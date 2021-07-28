@@ -6,4 +6,11 @@
     <RootNamespace>HotChocolate.StarWars</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <!--PackageReference Include="HotChocolate.AspNetCore" Version="12.0.0-preview.27" /-->
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.8" />
+    <ProjectReference Include="..\StarWars.Data\HotChocolate.StarWars.Data.csproj" />
+    <ProjectReference Include="/Users/michael/local/hc-2/src/HotChocolate/AspNetCore/src/AspNetCore/HotChocolate.AspNetCore.csproj" />
+  </ItemGroup>
+
 </Project>
