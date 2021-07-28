@@ -23,7 +23,7 @@ namespace Tools
             seed.SeedAsync(context).Wait();
 
 
-            context.Database.EnsureCreated();
+            // context.Database.EnsureCreated();
 
 
 
@@ -41,11 +41,34 @@ namespace Tools
         private readonly Dictionary<string, Director> _directors = new();
         private readonly Dictionary<string, Climate> _climates = new();
         private readonly Dictionary<string, Terrain> _terrains = new();
+        private readonly Dictionary<string, EyeColor[]> _eyeColors = new()
+        {
+            {"blue", new [] { EyeColor.Blue } },
+            {"yellow", new [] { EyeColor.Yellow } },
+            {"red", new [] { EyeColor.Red } },
+            {"blue-grey", new [] { EyeColor.Blue, EyeColor.Grey } },
+            {"black", new [] { EyeColor.Black } },
+            {"orange", new [] { EyeColor.Orange } },
+            {"hazel", new [] { EyeColor.Hazel } },
+            {"pink", new [] { EyeColor.Pink } },
+            {"unknown", new [] { EyeColor.Unknown } },
+            {"gold", new [] { EyeColor.Gold } },
+            {"green", new [] { EyeColor.Green } },
+            {"white", new [] { EyeColor.White } }
+        };
+
+        private readonly HashSet<string> _color = new();
 
         public async Task SeedAsync(StarWarsContext context)
         {
             await LoadFilmsAsync();
             await LoadPeopleAsync();
+            await LoadPlanetsAsync();
+
+            foreach (string s in _color)
+            {
+                Console.WriteLine(s);
+            }
         }
 
         private async Task LoadFilmsAsync()
@@ -118,6 +141,11 @@ namespace Tools
                         HairColor = dto.hair_color,
                         SkinColor = dto.skin_color,
                     };
+
+                    foreach (string s in dto.eye_color.Split(',').Select(t => t.Trim()).Distinct())
+                    {
+                        _color.Add(s);
+                    }
 
                     if (dto.height is not null and not "unknown")
                     {
@@ -314,7 +342,32 @@ namespace Tools
         public List<PlanetDto> results { get; set; }
     }
 
+    public class SpeciesDto
+    {
+        public string name { get; set; }
+        public string classification { get; set; }
+        public string designation { get; set; }
+        public string average_height { get; set; }
+        public string skin_colors { get; set; }
+        public string hair_colors { get; set; }
+        public string eye_colors { get; set; }
+        public string average_lifespan { get; set; }
+        public string homeworld { get; set; }
+        public string language { get; set; }
+        public List<string> people { get; set; }
+        public List<string> films { get; set; }
+        public DateTime created { get; set; }
+        public DateTime edited { get; set; }
+        public string url { get; set; }
+    }
 
+    public class GetSpeciesResponse
+    {
+        public int count { get; set; }
+        public string next { get; set; }
+        public object previous { get; set; }
+        public List<SpeciesDto> results { get; set; }
+    }
 
 
 

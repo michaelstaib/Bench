@@ -109,6 +109,23 @@ namespace StarWars
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
+
+
+        public string name { get; set; }
+        public string classification { get; set; }
+        public string designation { get; set; }
+        public string average_height { get; set; }
+        public string skin_colors { get; set; }
+        public string hair_colors { get; set; }
+        public string eye_colors { get; set; }
+        public string average_lifespan { get; set; }
+        public string homeworld { get; set; }
+        public string language { get; set; }
+        public List<string> people { get; set; }
+        public List<string> films { get; set; }
+        public DateTime created { get; set; }
+        public DateTime edited { get; set; }
+        public string url { get; set; }
     }
 
     [Index(nameof(Name), IsUnique = true)]
@@ -164,6 +181,23 @@ namespace StarWars
         public string Name { get; set; } = default!;
     }
 
+    public enum EyeColor
+    {
+        Unknown,
+        Blue,
+        Yellow,
+        Red,
+        Brown,
+        Grey,
+        Black,
+        Orange,
+        Hazel,
+        Pink,
+        Gold,
+        Green,
+        White,
+    }
+
     public class StarWarsContext : DbContext
     {
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -178,6 +212,12 @@ namespace StarWars
         public DbSet<Film> Films { get; set; } = default!;
 
         public DbSet<Person> People { get; set; } = default!;
+
+        public DbSet<Planet> Planets { get; set; } = default!;
+
+        public DbSet<Climate> Climates { get; set; } = default!;
+
+        public DbSet<Terrain> Terrains { get; set; } = default!;
 
         public DbSet<Producer> Producers { get; set; } = default!;
 
