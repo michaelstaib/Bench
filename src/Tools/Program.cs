@@ -25,13 +25,7 @@ namespace HotChocolate.StarWars.Data.Tools
             seed.SeedAsync(context).Wait();
             context.SaveChanges();
 
-
             // context.Database.EnsureCreated();
-
-
-
-
-
         }
     }
 
